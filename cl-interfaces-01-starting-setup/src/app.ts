@@ -8,6 +8,10 @@ class Department {
     // this.id = id;
     // this.name = n;
   }
+  /* static methods. Can be used w/o instiating the class */
+  static createEmployee(name: string){
+    return {name: name};
+  }
 
   describe(this: Department) {
     console.log(`Department (${this.id}): ${this.name}`);
@@ -34,12 +38,28 @@ class ITDepartment extends Department {
 }
 
 class AccountingDepartment extends Department {
+  private lastReport: string;
+
+  /* getter. Is a function that gets a private variable. Used to better control acces */
+
+  get mostRecentReport() {
+    // must return somthing
+    if (this.lastReport){
+      return this.lastReport;
+    }
+    throw new Error('No Report found.')
+    // Using this would allow read acces, but is not allow set access via dot notation yet.
+    // read like dept.mostRecentReport w/o parathenthesis. Access as if it is a variable.
+  }
+
   constructor(id: string, private reports: string[]) {
-    super(id, 'Accounting');
+    super(id, 'Accounting'); // Must always use super before rest of constructor
+    this.lastReport = reports[0]
   }
 
   addReport(text: string) {
     this.reports.push(text);
+    this.lastReport = text;
   }
 
   printReports() {
