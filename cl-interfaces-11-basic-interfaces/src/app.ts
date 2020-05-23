@@ -1,24 +1,26 @@
-interface Person {
-  // Interface descibes the structure of an object.
-  // Used as a custom type? Not a class.
-  // No concrete values entered.
+interface Greetable {
+  /* How is an interface used in a fucking object? */
   name: string;
-  age: number;
 
   // Method is described here, but not actually written.
   greet(phrase: string): void;
 }
 
 /* Why use this? You can type check an object. */
+/* This class must included the structure of the interface */
+class Person implements Greetable {
+  
+  constructor(
+    public name: string,
+    public age: number
+    ){}
 
-let user1: Person;
+    greet(phrase: string){
+      console.log(`${phrase} - my name ${this.name}`)
+    }
+}
+/* Interface can be implented in a object. Types can't. Hence, why we didn't just use "type" */
 
-user1 = {
-  name: 'Max',
-  age: 30,
-  greet(phrase: string) {
-    console.log(phrase + ' ' + this.name);
-  }
-};
+let user1 = new Person('Joel',30);
 
 user1.greet('Hi there - I am');
