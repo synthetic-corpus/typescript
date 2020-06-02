@@ -1,6 +1,6 @@
 interface Greetable {
   /* How is an interface used in a fucking object? */
-  name: string;
+  readonly name: string;
 
   // Method is described here, but not actually written.
   greet(phrase: string): void;
