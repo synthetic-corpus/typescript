@@ -7,10 +7,16 @@ function Logger(log: String){
     }
 }
 
-// @ is a special Identifier
-// @ points at a funtion, which is the decorater
-// The decorator requires an arguement
-@Logger('I am about to log...')
+function WithTemplate(template: string, hookID: string){
+    return function(_: Function){
+        const hookEL = document.getElementById(hookID)
+        if(hookEL){
+            hookEL.innerHTML = template;
+        }
+    }
+}
+
+@WithTemplate('<h3>empty string here</h3>','appout')
 class Person {
     name = 'Max';
 
