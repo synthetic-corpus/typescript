@@ -8,10 +8,13 @@ function Logger(log: String){
 }
 
 function WithTemplate(template: string, hookID: string){
-    return function(_: Function){
+    return function(target: any){
         const hookEL = document.getElementById(hookID)
+        // Calls the actual targeted function.
+        const person = new target();
         if(hookEL){
             hookEL.innerHTML = template;
+            hookEL.querySelector('h3')!.textContent = person.name
         }
     }
 }
