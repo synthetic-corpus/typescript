@@ -58,3 +58,9 @@ function createCourseGoal(
     courseGoal.completedUntil = date;
     return courseGoal as CourseGoal
 }
+
+// How to make a ready only mutable constant
+
+const namess: Readonly<string[]> = ["thing one", "thing two"]
+// typescript will yell at if you try this now
+namess.push("thing three")
