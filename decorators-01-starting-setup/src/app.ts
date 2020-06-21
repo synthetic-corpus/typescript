@@ -8,6 +8,7 @@ function Logger(log: String){
 }
 
 function WithTemplate(template: string, hookID: string){
+    console.log('With Template is running first,,, right?')
     return function(target: any){
         const hookEL = document.getElementById(hookID)
         // Calls the actual targeted function.
@@ -18,8 +19,10 @@ function WithTemplate(template: string, hookID: string){
         }
     }
 }
-
+@Logger('This is going to get loooog')
 @WithTemplate('<h3>empty string here</h3>','appout')
+// Multiple Decoraters can be run on a single fucntion.
+// They execute from bottom up.
 class Person {
     name = 'Max';
 
